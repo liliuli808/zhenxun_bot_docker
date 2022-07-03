@@ -21,7 +21,7 @@ jobs:
 
       # 检出（仓库）文件 / 获取代码
       - uses: actions/checkout@v3
-      - name: Build the Docker image
+        name: Build the Docker image
         run: |
           sudo timedatectl set-timezone "Asia/Shanghai"
           sudo apt-get update
@@ -35,7 +35,7 @@ jobs:
 
       # 登录 docker Hub
       - uses: docker/login-action@v2
-      - name: Login Docker Hub
+        name: Login Docker Hub
         with:
           username: ${{ secrets.DOCKER_HUB_USER_NAME }}
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
