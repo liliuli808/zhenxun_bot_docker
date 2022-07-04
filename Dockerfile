@@ -40,10 +40,6 @@ RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
 	libgtk-3-0 \
 	libgbm-dev \
 	libxshmfence1 \
-    libenchant1c2a \
-    libjpeg-turbo8 \
-    ttf-ubuntu-font-family \
-    libjpeg-turbo8 \
     libzbar0  \
     locales  \
     locales-all  \
