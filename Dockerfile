@@ -44,6 +44,10 @@ RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     libjpeg-turbo8 \
     ttf-ubuntu-font-family \
     libjpeg-turbo8 \
+    libzbar0  \
+    locales  \
+    locales-all  \
+    fonts-noto\
     && pip install -r requirements.txt --no-cache-dir
 
 CMD ["./zx-cli","-mode","docker"]
