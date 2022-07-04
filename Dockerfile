@@ -39,7 +39,11 @@ RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
 	libatk1.0-0 \
 	libgtk-3-0 \
 	libgbm-dev \
-	libxshmfence1\
-	&& pip install -r requirements.txt --no-cache-dir
+	libxshmfence1 \
+    libenchant1c2a \
+    libjpeg-turbo8 \
+    ttf-ubuntu-font-family \
+    libjpeg-turbo8 \
+    && pip install -r requirements.txt --no-cache-dir
 
 CMD ["./zx-cli","-mode","docker"]
