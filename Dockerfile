@@ -10,9 +10,9 @@ ENV TZ Asia/Shanghai
 
 WORKDIR /app
 
-COPY ["requirements.txt" ,"language-pack-zh-hans_20.04+20200416_all.deb","zx-cli","bot.tar.gz","/app/"]
+COPY ["requirements.txt" ,"language-pack-zh-hans-base_20.04+20200416_all.deb","language-pack-zh-hans_20.04+20200416_all.deb","zx-cli","bot.tar.gz","/app/"]
 
-RUN dpkg -i language-pack-zh-hans_20.04+20200416_all.deb
+RUN dpkg -i language-pack-zh-hans-base_20.04+20200416_all.deb language-pack-zh-hans_20.04+20200416_all.deb
 
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
 	&& echo 'Asia/Shanghai' >/etc/timezone \
