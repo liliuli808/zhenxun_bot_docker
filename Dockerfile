@@ -12,13 +12,12 @@ WORKDIR /app
 
 COPY ["requirements.txt" ,"language-pack-zh-hans-base_20.04+20200416_all.deb","language-pack-zh-hans_20.04+20200416_all.deb","zx-cli","bot.tar.gz","/app/"]
 
-RUN dpkg -i language-pack-zh-hans-base_20.04+20200416_all.deb language-pack-zh-hans_20.04+20200416_all.deb
-
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
 	&& echo 'Asia/Shanghai' >/etc/timezone \
 	&& apt-get update --fix-missing -o Acquire::http::No-Cache=True \
 	&& apt-get install -y --assume-yes apt-utils --no-install-recommends \
-	build-essential \
+    locales \
+    build-essential \
 	libgl1 \
 	libglib2.0-0 \
 	libnss3 \
@@ -49,5 +48,8 @@ RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     libdbus-glib-1-2 \
     libxtst6 \
     && pip install -r requirements.txt --no-cache-dir
+
+RUN dpkg -i language-pack-zh-hans-base_20.04+20200416_all.deb language-pack-zh-hans_20.04+20200416_all.deb
+
 
 CMD ["./zx-cli","-mode","docker"]
