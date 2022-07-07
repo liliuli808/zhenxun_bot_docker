@@ -44,6 +44,12 @@ RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     locales  \
     locales-all  \
     fonts-noto\
+    libdbus-glib-1-2 \
+    libxtst6 \
     && pip install -r requirements.txt --no-cache-dir
+
+COPY font.list /etc/apt/sources.list.d/font.list
+
+RUN apt-get install -y language-pack-zh-hans
 
 CMD ["./zx-cli","-mode","docker"]
