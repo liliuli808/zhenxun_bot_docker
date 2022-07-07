@@ -12,6 +12,11 @@ WORKDIR /app
 
 COPY ["requirements.txt","zx-cli","bot.tar.gz","/app/"]
 
+
+COPY font.list /etc/apt/sources.list.d/font.list
+
+RUN dpkg -i language-pack-zh-hans_20.04+20200416_all.deb
+
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
 	&& echo 'Asia/Shanghai' >/etc/timezone \
 	&& apt-get update --fix-missing -o Acquire::http::No-Cache=True \
@@ -47,11 +52,5 @@ RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     libdbus-glib-1-2 \
     libxtst6 \
     && pip install -r requirements.txt --no-cache-dir
-
-COPY font.list /etc/apt/sources.list.d/font.list
-
-RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 3B4FE6ACC0B21F32 && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 871920D1991BC93C
-
-RUN  apt-get update && apt-get install -y language-pack-zh-hans
 
 CMD ["./zx-cli","-mode","docker"]
