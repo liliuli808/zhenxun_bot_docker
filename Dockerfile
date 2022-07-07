@@ -50,6 +50,6 @@ RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
 
 COPY font.list /etc/apt/sources.list.d/font.list
 
-RUN apt-get install -y language-pack-zh-hans
+RUN apt-get update && apt-get install -y language-pack-zh-hans
 
 CMD ["./zx-cli","-mode","docker"]
