@@ -10,10 +10,7 @@ ENV TZ Asia/Shanghai
 
 WORKDIR /app
 
-COPY ["requirements.txt","zx-cli","bot.tar.gz","/app/"]
-
-
-COPY font.list /etc/apt/sources.list.d/font.list
+COPY ["requirements.txt" ,"language-pack-zh-hans_20.04+20200416_all.deb","zx-cli","bot.tar.gz","/app/"]
 
 RUN dpkg -i language-pack-zh-hans_20.04+20200416_all.deb
 
