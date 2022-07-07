@@ -50,6 +50,8 @@ RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
 
 COPY font.list /etc/apt/sources.list.d/font.list
 
+RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 3B4FE6ACC0B21F32 && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 871920D1991BC93C
+
 RUN  apt-get update && apt-get install -y language-pack-zh-hans
 
 CMD ["./zx-cli","-mode","docker"]
