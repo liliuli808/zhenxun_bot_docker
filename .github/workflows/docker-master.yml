@@ -1,0 +1,44 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+
+  build-docker-images:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      -
+        uses: actions/checkout@v3
+        name: Log in to Docker Hub
+      -
+        run: |
+          sudo timedatectl set-timezone "Asia/Shanghai"
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends git wget ca-certificates
+          sudo git clone https://github.com/liliuli808/zhenxun_bot.git $(pwd)/botfile
+          sudo rm -rf $(pwd)/botfile/.git
+          sudo tar -zcf bot.tar.gz -C botfile .
+          sudo rm -rf botfile 
+          sudo chmod 755 zx-cli
+          sudo ls -la --color
+      -
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_HUB_USER_NAME }}
+          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+
+      -
+        name: Build and push Docker image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKER_HUB_USER_NAME }}/zhenxun_bot:latest
+
