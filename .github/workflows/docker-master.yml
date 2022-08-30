@@ -21,7 +21,7 @@ jobs:
           sudo timedatectl set-timezone "Asia/Shanghai"
           sudo apt-get update
           sudo apt-get install --no-install-recommends git wget ca-certificates
-          sudo git clone https://github.com/liliuli808/zhenxun_bot.git $(pwd)/botfile
+          sudo git clone https://github.com/HibiKier/zhenxun_bot.git $(pwd)/botfile
           sudo rm -rf $(pwd)/botfile/.git
           sudo tar -zcf bot.tar.gz -C botfile .
           sudo rm -rf botfile 
